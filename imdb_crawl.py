@@ -77,7 +77,14 @@ def save_image(content, crop, dir_path, image_name, bb, image_size):
             logger.error('{error}: {image}\n'.format(error=e, image=save_path))
             pass
     else:
-        logger.warning('Not crop\n')
+        try:
+            I = Image.open(io.BytesIO(content))
+            I.resize((w,h), Image.ANTIALIAS).save(save_path)
+            logger.info('Image saved as %s\n' % save_path)
+
+        except IOError as e:
+            logger.error('{error}: {image}\n'.format(error=e, image=save_path))
+            pass
          
  
 def download_image(url, logger, counter):
