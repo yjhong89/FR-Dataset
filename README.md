@@ -1,4 +1,4 @@
-# IMDB-Face crawling script for face recognition
+# IMDb-Face dataset crawling script for face recognition
 
 * [IMDb](http://openaccess.thecvf.com/content_ECCV_2018/papers/Liren_Chen_The_Devil_of_ECCV_2018_paper.pdf)
   + Available at https://github.com/fwang91/IMDb-Face
