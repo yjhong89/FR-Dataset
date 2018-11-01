@@ -3,7 +3,7 @@
 * [IMDb](http://openaccess.thecvf.com/content_ECCV_2018/papers/Liren_Chen_The_Devil_of_ECCV_2018_paper.pdf)
   + Available at https://github.com/fwang91/IMDb-Face
   
-* Download 'IMDb-Face.csv' from https://drive.google.com/open?id=134kOnRcJgHZ2eREu8QRi99qj996Ap_ML
+* Download 'IMDb-Face.csv' file from https://drive.google.com/open?id=134kOnRcJgHZ2eREu8QRi99qj996Ap_ML
 * Run 
 ```
 imdb_crawl.py -c -d
