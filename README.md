@@ -7,7 +7,7 @@
 * Run     
     ```
     imdb_crawl.py
-    -c: whether you crop image with bounding box
+    -c: whether you crop the image with bounding box
     -d: delete existing data directory be
     ```
 * Make sure 'IMDb-Face.csv' and 'imdb_crawl.py' are located in same directory.
