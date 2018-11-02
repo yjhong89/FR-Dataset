@@ -81,7 +81,11 @@ def save_image(content, crop, dir_path, image_name, bb, image_size):
             I = Image.open(io.BytesIO(content))
             I.resize((w,h), Image.ANTIALIAS).save(save_path)
             logger.info('Image saved as %s\n' % save_path)
-
+            # Write bounding box
+            with open(os.path.join(dir_path, 'bb.txt'), 'a') as f:
+                f.write(save_path + ',' + ','.join(str(bb) for bb in bbox) + '\n')
+                f.close()
+                
         except IOError as e:
             logger.error('{error}: {image}\n'.format(error=e, image=save_path))
             pass
@@ -120,18 +124,31 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     logger = create_logger(args.logger) 
+    
     if args.delete:
         logger.warning('Delete existing files')
         files = os.listdir()
         for i in range(len(files)):
             if os.path.isdir(files[i]):
-                shutil.rmtree(files[i])
-                logger.warning('Delete %s' % files[i])
+                try:
+                    shutil.rmtree(files[i])
+                    logger.warning('Delete %s' % files[i])
+                except OSError as e:
+                    logger.error('%s-%s' % (e.filename, e.strerror))
+                    
             elif os.path.splitext(files[i])[-1] == '.log':
                 os.remove(files[i])
                 logger.warning('Delete logfile %s' % files[i])
             else:
                 continue
+    else:
+        # Delete bounding box text file
+        for (p,d,f) in os.walk('./'):
+            for filename in f:
+                ext = os.phat.splitext(filename)[-1]
+                if ext == '.txt':
+                    os.remove(os.path.join(p, f))
+                    logger.warning('Delete %s/%s' % (p, filename))
 
     num_threads = mp.cpu_count()
 
