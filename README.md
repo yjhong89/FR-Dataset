@@ -13,5 +13,5 @@
     -c: whether you crop the image with bounding box
     -d: delete existing data directory be
     ```
-* If you save non-cropped image, corresponding bounding box will also be recorded in each direcory.
+* If you save non-cropped image, corresponding bounding box will also be recorded in bb.txt file for each direcory.
 * Make sure 'IMDb-Face.csv' and 'imdb_crawl.py' are located in same directory.
