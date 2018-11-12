@@ -1,7 +1,9 @@
-# IMDb-Face dataset crawling script for face recognition
+# Face Recognition dataset
 
-* [IMDb](http://openaccess.thecvf.com/content_ECCV_2018/papers/Liren_Chen_The_Devil_of_ECCV_2018_paper.pdf)
-  + Available at https://github.com/fwang91/IMDb-Face
+## IMDb-Face dataset
+
+* [IMDb](http://openaccess.thecvf.com/content_ECCV_2018/papers/Liren_Chen_The_Devil_of_ECCV_2018_paper.pdf) 
+  + Available at https://github.com/fwang91/IMDb-Face (IMDb-Face.csv)
   
 * For fast processing, multi processing is supported with concurrent.futures module.
   
@@ -15,3 +17,5 @@
     ```
 * If you save non-cropped image, corresponding bounding box will also be recorded in bb.txt file for each direcory.
 * Make sure 'IMDb-Face.csv' and 'imdb_crawl.py' are located in same directory.
+
+## Megaface dataset
