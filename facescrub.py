@@ -9,6 +9,8 @@ import multiprocessing as mp
 import concurrent.futures 
 import shutil
 
+DATA_ROOT = './facescrub'
+
 def downloads(line, timeout):
     # Name/image_id/face_id/url/bbox/sha256  
     # Line parse  
@@ -17,13 +19,15 @@ def downloads(line, timeout):
     image_id = contents[1].strip()
     url = contents[3].strip()
     bbox = contents[4].strip()
+    
+    download_dir = os.path.join(DATA_ROOT, act_name)
+    
     if not os.path.exists(act_name):
         os.makedirs(act_name)
         logging.info('%s directory created' % act_name)
 
     try:
         r = requests.get(url, stream=True, timeout=timeout)
-        save_path = os.path.join(act_name, image_id + '.png')
         status = r.status_code
         content_size = int(r.headers.get('content-length'))
         logging.info('Status {} for {}, size of {}'.format(status, save_path, content_size))
@@ -35,8 +39,8 @@ def downloads(line, timeout):
         I.save(save_path)
         logging.info('%s saved\n' % save_path)
         # Write bounding box
-        with open(os.path.join(act_name, 'bb.txt'), 'a') as bbf:
-            bbf.write(save_path + ',' + bbox + '\n')
+        with open(os.path.join(download_dir, 'bb.txt'), 'a') as bbf:
+            bbf.write(('_').join((act_name, face_id)) + ',' + bbox + '\n')
             bbf.close()
 
     except Exception as e:
@@ -64,8 +68,16 @@ if __name__ == "__main__":
                     logging.error('%s-%s' % (e.filename, e.strerror))
                 else:
                     continue
+    else:
+        for (p, d, files) in os.walk(DATA_ROOT):
+            for f in files:
+                ext = os.path.splitext(f)[-1]
+                if ext == '.txt':
+                    os.remove(os.path.join(p, f))
+                    logging.warning('Delete %s' % os.path.join(p, f))
     
-
+    if not os.path.exists(DATA_ROOT):
+        os.makedirs(DATA_ROOT)
 
     logging.info(args.txt_files)
 
