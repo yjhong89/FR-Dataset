@@ -147,7 +147,7 @@ if __name__ == "__main__":
             for filename in f:
                 ext = os.phat.splitext(filename)[-1]
                 if ext == '.txt':
-                    os.remove(os.path.join(p, f))
+                    os.remove(os.path.join(p, filename))
                     logger.warning('Delete %s/%s' % (p, filename))
 
     num_threads = mp.cpu_count()
