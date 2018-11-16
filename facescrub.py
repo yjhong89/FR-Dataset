@@ -53,16 +53,20 @@ def clean_dir_file_name():
     directories = os.listdir(DATA_ROOT)
 
     for d in directories:
-        d_changed = d.split('_')[0].strip().replace(' ', '_')
+        d_changed = d.strip().replace(' ', '_')
         if d != d_changed:
-            sp.call(['mv', d, d_changed])
+            sp.call(['mv', os.path.join(DATA_ROOT, d), os.path.join(DATA_ROOT, d_changed)])
             logging.info('From {} to {}'.format(d, d_changed))
         files = os.listdir(os.path.join(DATA_ROOT, d_changed))
         for f in files:
-            f_changed = d.split('_')[0].strip().replace(' ', '_')
+            f_changed = f.split('_')[0].strip().replace(' ', '_')
+            filename = f.split('_')[-1]
+            filename = '_'.join((f_changed, filename))
+            logging.info('Filename %s' % filename)
+            dir_path = os.path.join(DATA_ROOT, d_changed)
             if f != f_changed:
-                sp,call(['mv', os.path.join(d_changed, f), os.path.join(d_changed, f_changed)])
-                logging.info('From {} to {}'.format(os.path.join(d_changed, f), os.path.join(d_changed, f_changed)))
+                sp.call(['mv', os.path.join(dir_path, f), os.path.join(dir_path, filename)])
+                logging.info('From {} to {}'.format(os.path.join(dir_path, f), os.path.join(dir_path, filename)))
 
 
 
@@ -106,7 +110,7 @@ if __name__ == "__main__":
     else:
         num_threads = mp.cpu_count()
 
-    logging.info('Facescrub text files: ', args.txt_files)
+    logging.info('Facescrub text files: %s' % args.txt_files)
 
     num_threads = 1
     logging.info('%d cpus' % num_threads)
