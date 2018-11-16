@@ -131,7 +131,7 @@ if __name__ == "__main__":
 #                        logging.info('%s bytes done' % data) 
 
             except Exception as e:
-                logging.warning('%(lineno)d:', e)
+                logging.warning(e.strerror)
 
 
             f.close()
