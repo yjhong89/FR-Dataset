@@ -81,7 +81,7 @@ if __name__ == "__main__":
     parser.set_defaults(txt_files=['facescrub_actors.txt', 'facescrub_actresses.txt'], timeout=10, datapath='facescrub')
 
     args = parser.parse_args()
-    logging.basicConfig(level=logging.INFO, format='[%(filename)s:%(lineno)d] %(message)s')
+    logging.basicConfig(level=logging.INFO, format='[%(levelname)s][%(filename)s:%(lineno)d] %(message)s')
 
     if args.delete:
         logging.warning('Delete existing images directory')
