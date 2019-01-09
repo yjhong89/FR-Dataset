@@ -18,7 +18,7 @@ def create_logger(logger_name):
     logger.setLevel(logging.DEBUG)
 
     # Log formatter
-    formatter = logging.Formatter('[%(levelname)s] %(message)s')
+    formatter = logging.Formatter('[%(levelname)s][%(lineno)d] %(message)s')
 
     # Logfile handler
     logfile_name = logger_name+'.log'
@@ -181,7 +181,7 @@ if __name__ == "__main__":
         #pickle.dumps(logger)
         
         try:
-            futures = [executor.submit(down_save, save_dir, row, args.logger, args.crop, counter) for counter, row in enumerate(csv_reader)]
+            futures = [executor.submit(down_save, args.save_dir, row, args.logger, args.crop, counter) for counter, row in enumerate(csv_reader)]
             for future in concurrent.futures.as_completed(futures):
                 #print(i.result())
                 pass
