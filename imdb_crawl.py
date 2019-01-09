@@ -39,14 +39,14 @@ def create_logger(logger_name):
     return logger
 
 
-def down_save(row, logname, crop, counter):
+def down_save(save_dir, row, logname, crop, counter):
     logger = logging.getLogger(logname)
 
     # Make download directory
-    dir_path = row['index']
+    dir_path = os.path.join(save_dir, row['index'])
     if not os.path.exists(dir_path):
         logger.info('Make directory of {name}\n'.format(name=row['index']))
-        os.makedirs(dir_path)
+        os.makedirs(dir_path, exist_ok=True)
     # Download image
     response = download_image(row['url'], logger, counter)
     if response:
@@ -119,6 +119,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Script for download IMDb dataset for face recognition')
     parser.add_argument('--csv_file', type=str, default='IMDb-Face.csv')
     parser.add_argument('--logger', type=str, default='imdb')
+    parser.add_argument('--save_dir', type=str, default='imdb_data')
     parser.add_argument('-c', '--crop', action="store_true")
     parser.add_argument('-d', '--delete', action="store_true")
     args = parser.parse_args()
@@ -145,7 +146,7 @@ if __name__ == "__main__":
         # Delete bounding box text file
         for (p,d,f) in os.walk('./'):
             for filename in f:
-                ext = os.phat.splitext(filename)[-1]
+                ext = os.path.splitext(filename)[-1]
                 if ext == '.txt':
                     os.remove(os.path.join(p, filename))
                     logger.warning('Delete %s/%s' % (p, filename))
@@ -156,6 +157,11 @@ if __name__ == "__main__":
     if not os.path.exists(os.path.expanduser(args.csv_file)):
         logger.error('%s does not exist' % args.csv_file)     
         raise Exception
+
+    # Make save directory
+    if not os.path.exists(args.save_dir):
+        os.makedirs(args.save_dir, exist_ok=True)
+        
 
     # Multiprocess must be called from __main__
     with open(args.csv_file) as imdb, concurrent.futures.ProcessPoolExecutor(max_workers=num_threads) as executor:
@@ -175,7 +181,7 @@ if __name__ == "__main__":
         #pickle.dumps(logger)
         
         try:
-            futures = [executor.submit(down_save, row, args.logger, args.crop, counter) for counter, row in enumerate(csv_reader)]
+            futures = [executor.submit(down_save, save_dir, row, args.logger, args.crop, counter) for counter, row in enumerate(csv_reader)]
             for future in concurrent.futures.as_completed(futures):
                 #print(i.result())
                 pass
