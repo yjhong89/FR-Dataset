@@ -8,10 +8,6 @@ from glob import glob
 from PIL import Image
 from face_recognition import FaceRecognition
 
-import nsml
-from nsml import DATASET_PATH
-from nsml import NSML_NFS_OUTPUT
-
 class GEN_MEGAFACE(object):
     def __init__(self, args):
         self.args = args
@@ -19,7 +15,7 @@ class GEN_MEGAFACE(object):
         self.fr = FaceRecognition(model_file=self.args.ckpt, embedding_size=self.args.feature_dim)
         logging.info('Face recognition loaded')
         
-        self.parent_path = DATASET_PATH + '/aligned_MEGAFACE' + '/train'
+        self.parent_path = './MEGAFACE'
         self.fname2center = dict()
         self.facescrub_noise = list()
         self.distractor_noise = list()
@@ -63,9 +59,9 @@ class GEN_MEGAFACE(object):
         logging.debug('Filename: %s\nIdentity: %s\nPath: %s' % (filename_head, identity, path))
 
         if megaface:
-            output_bin_parent_dir = os.path.join(NSML_NFS_OUTPUT, save_path, bin_path, parent_id)
+            output_bin_parent_dir = os.path.join(save_path, bin_path, parent_id)
         else:
-            output_bin_parent_dir = os.path.join(NSML_NFS_OUTPUT, save_path, bin_path)
+            output_bin_parent_dir = os.path.join(save_path, bin_path)
         output_bin_dir = os.path.join(output_bin_parent_dir, identity)
             
         if not os.path.exists(output_bin_dir):
