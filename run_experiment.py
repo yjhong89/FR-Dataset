@@ -9,7 +9,6 @@ import json
 import random
 import subprocess
 import nsml
-from nsml import DATASET_PATH, NSML_NFS_OUTPUT
 
 MODEL = os.path.join('models', 'jb_identity.bin')
 IDENTIFICATION_EXE = os.path.join('bin', 'Identification')
@@ -43,12 +42,10 @@ def main():
     file_ending = args.file_ending
 
     # feature_path
-    distractor_feature_path = os.path.join(DATASET_PATH, file_ending.split('.')[0], 'megaface_bin')
-#    distractor_feature_path = os.path.join(DATASET_PATH, 'train', 'megaface_bin')
+    distractor_feature_path = os.path.join(file_ending.split('.')[0], 'megaface_bin')
     print(distractor_feature_path)
 
-    probe_feature_path = os.path.join(DATASET_PATH, file_ending.split('.')[0], 'facescrub_bin') 
-#    probe_feature_path = os.path.join(DATASET_PATH, 'train', 'facescrub_bin', 'aligned_facescrub')
+    probe_feature_path = os.path.join(file_ending.split('.')[0], 'facescrub_bin') 
     print(probe_feature_path)
 
     model = args.model
