@@ -57,7 +57,7 @@ Preprocess with your face detection/alignment model.
     - ckpt: trained face recognition model
     - file_ending: file ending name, ex) _baseline.bin: aaa.jpg -> aaa_baseline.bin    
     </pre>
-  - Resulting bin files of gen_megaface.py (ex: file_ending: _\baseline.bin_)
+  - Resulting bin files of gen_megaface.py (ex: file_ending: \_baseline.bin_)
  
     <pre>
     _baseline -- facescrub_bin -- ids -- bin files (***_baseline.bin)
