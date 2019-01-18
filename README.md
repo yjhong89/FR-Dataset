@@ -85,7 +85,7 @@ Preprocess with your face detection/alignment model.
     - sizes: number of distractors, set as [1000000] 
     </pre>
 * Caution
-  - binary files (**bin/Identification**, **bin/FuseResults**) are only executed on opencv2.4. 
+  - binary files (**bin/Identification**, **bin/FuseResults**) can be only executed on opencv2.4. 
 
 ## Reference
 * Megaface devkit
