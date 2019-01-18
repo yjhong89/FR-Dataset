@@ -31,7 +31,7 @@ To run megaface test including identification(1m distractors), verification(@1e-
 * Facescrub<br/>
   - `wget -c --user 'id' --password 'pwd' http://megaface.cs.washington.edu/dataset/download/content/downloaded.tgz`
   - `python facescrub.py`<br/>
-    But, many urls can not accessed
+    But, many urls can not be accessed.
 * Both datasets can be accessed at **http://megaface.cs.washington.edu/participate/challenge.html**
 * Dataset structure
    <pre>
