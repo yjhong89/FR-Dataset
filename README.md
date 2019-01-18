@@ -90,7 +90,9 @@ Preprocess with your face detection/alignment model.
 ## Reference
 * Megaface devkit
   - Can download at http://megaface.cs.washington.edu/participate/challenge.html
-* megaface noise list
-  - https://github.com/deepinsight/insightface/tree/master/src/megaface
+* distractor_noise_list, facescrub_noise_list
+  - Megaface dataset has some noisy dataset (some images in facescrub are included distractors) 
+    - [arcface](https://arxiv.org/pdf/1801.07698.pdf)
+  - Can get from https://github.com/deepinsight/insightface/tree/master/src/megaface
 
 
