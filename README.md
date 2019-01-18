@@ -70,6 +70,11 @@ Preprocess with your face detection/alignment model.
 * On terminal, <br/>
 ``` python run_experiment.py --file_ending _baseline.bin --out_root baseline_results -d```
   - Need at least 32G memory
+  - Need devkit from http://megaface.cs.washington.edu/participate/challenge.html
+    - bin/FuseResults, Identification
+    - models/jb_identity.bin, jb_LBP.bin
+    - templatelists
+    
 * run_experiment.py
   - Executes identification and verification binary files (**bin/Identification**, **bin/FuseResults**).
   - arguments
@@ -81,11 +86,6 @@ Preprocess with your face detection/alignment model.
     </pre>
 * Caution
   - binary files (**bin/Identification**, **bin/FuseResults**) are only executed on opencv2.4. 
-
-## Results
-<div align="center">
-  <img src="https://oss.navercorp.com/Naga/Megaface/blob/master/megaface.png" width="90%" height="300">
-</div>
 
 ## Reference
 * Megaface devkit
