@@ -46,7 +46,7 @@ Preprocess with your face detection/alignment model.
 ### Generate bin files
 * gen_megaface.py (Need your face recognition model)  
   - Make bin files of megaface distractors/facescrub images from trained face recognition model.
-  - arguments
+  - Arguments
     <pre>
     - megaface_path: path of pre-processed distractor images
     - facescrub_path: path of pre-processed facescrub images
@@ -77,7 +77,7 @@ Preprocess with your face detection/alignment model.
     
 * run_experiment.py
   - Executes identification and verification binary files (**bin/Identification**, **bin/FuseResults**).
-  - arguments
+  - Arguments
     <pre>
     - distractor_feature_path: distractor bin files path (<b>megaface_bin_path</b> of gen_megaface.py)
     - probe_feature_path: facescrub bin files path (<b>facescrub_bin_path</b> of gen_megaface.py)
@@ -92,7 +92,6 @@ Preprocess with your face detection/alignment model.
   - Can download at http://megaface.cs.washington.edu/participate/challenge.html
 * distractor_noise_list, facescrub_noise_list
   - Megaface dataset has some noisy dataset (some images in facescrub are included distractors) 
-    - [arcface](https://arxiv.org/pdf/1801.07698.pdf)
-  - Can get from https://github.com/deepinsight/insightface/tree/master/src/megaface
-
+    - From [arcface](https://arxiv.org/pdf/1801.07698.pdf)
+    - [arcface github](https://github.com/deepinsight/insightface/tree/master/src/megaface)
 
