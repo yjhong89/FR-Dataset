@@ -41,6 +41,15 @@ To run megaface test including identification(1m distractors), verification(@1e-
             |- facescrub -- ids -- images, bb.txt
                                 |- bb.txt
    </pre>
+* Facescrub bounding box file  
+  - facescrub.py
+  - Need `facescrub bounding box actor.txt`, `facescrub bounding box actress.txt` files at [megaface](http://megaface.cs.washington.edu/participate/challenge.html)      
+  - Arguments
+    <pre>
+    - txt_files: [facescrub_actor.txt, facescrub_actress.txt]
+    - timeout: timeout seconds for accessing url (need for downloading image)
+    </pre>
+    - This script file can also download image from text files, but many rows have missing urls. 
 
 ### Preprocess
 Preprocess with your face detection/alignment model.
