@@ -10,7 +10,7 @@ import subprocess as sp
 import concurrent.futures 
 import shutil
 
-DATA_ROOT = './facescrub'
+DATA_ROOT = 'facescrub'
 
 def downloads(line, timeout, downloaded):
     # Name/image_id/face_id/url/bbox/sha256  
