@@ -59,7 +59,11 @@ class GEN_MEGAFACE(object):
         logging.debug('Filename: %s\nIdentity: %s\nPath: %s' % (filename_head, identity, path))
 
         if megaface:
-            output_bin_parent_dir = os.path.join(save_path, bin_path, parent_id)
+            # 001~082, 100~999
+            if parent_id == 'aligned_distractors':
+                output_bin_parent_dir = os.path.join(save_path, bin_path)
+            else:
+                output_bin_parent_dir = os.path.join(save_path, bin_path, parent_id)
         else:
             output_bin_parent_dir = os.path.join(save_path, bin_path)
         output_bin_dir = os.path.join(output_bin_parent_dir, identity)
